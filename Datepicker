@@ -1,0 +1,34 @@
+ public void Delivered_Baby_Date(string Date_for_Delivered_a_Baby)
+        {
+            string date = Date_for_Delivered_a_Baby.Replace("/", "");
+            string day = date.Substring(0, 2);
+            string Month = date.Substring(2, 2);
+
+            int mon = Convert.ToInt16(Month);
+
+            string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(mon);
+
+            string year = date.Substring(date.Length - 4, 4);
+
+            string currentmonth = DateTime.Now.ToString("MMMM").Substring(0, 3);
+            string currentyear = DateTime.Now.Year.ToString();
+            string currentday = DateTime.Now.ToString("dd").Substring(0, 2);
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@text='" + currentyear + "']")));
+            driver.FindElement(By.XPath("//*[@text='" + currentyear + "']")).Click();
+            driver.FindElement(By.XPath("//*[@text='" + currentyear + "']")).Clear();
+            driver.FindElement(By.XPath("//android.widget.EditText[@text='']")).SendKeys(year);
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@text='" + currentmonth + "']")));
+            driver.FindElement(By.XPath("//*[@text='" + currentmonth + "']")).Click();
+            driver.FindElement(By.XPath("//*[@text='" + currentmonth + "']")).Clear();
+            driver.FindElement(By.XPath("//android.widget.EditText[@text='']")).SendKeys(monthName);
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@text='" + currentday + "']")));
+            driver.FindElement(By.XPath("//*[@text='" + currentday + "']")).Click();
+            driver.FindElement(By.XPath("//*[@text='" + currentday + "']")).Clear();
+            driver.FindElement(By.XPath("//android.widget.EditText[@text='']")).SendKeys(day);
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//*[@text='OK']")));
+            driver.FindElement(By.XPath("//*[@text='OK']")).Click();
+        }
