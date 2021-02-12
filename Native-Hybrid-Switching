@@ -1,0 +1,28 @@
+var cap = new AppiumOptions();
+            cap.AddAdditionalCapability("deviceName", "Moto");
+            cap.AddAdditionalCapability("platformName", "Android");
+            cap.AddAdditionalCapability("platformVersion", "8.1");
+            cap.AddAdditionalCapability("udid", "ZY2243C3JX");
+            cap.AddAdditionalCapability("automationName", "uiautomator2");
+            cap.AddAdditionalCapability("app", @"\\192.169.1.55\Automation reports\Mobile_Backup\MobileAPK\APK\MySamil_B2B_APK\010121\TeamSamil.apk");
+            cap.AddAdditionalCapability("appWaitPackage", "com.teamsamil.in");
+            cap.AddAdditionalCapability("appWaitActivity", "com.teamsamil.in.MainActivity");
+
+            driver = new AndroidDriver<AndroidElement>(new Uri("http://127.0.0.1:4723/wd/hub"), cap, TimeSpan.FromMinutes(5));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+
+            
+            IList<string> contextNames = driver.Contexts;
+            foreach (String contextName in contextNames)
+            {
+                if (contextName.Contains("WEBVIEW"))
+                {
+                    WebView = contextName;
+                    driver.Context = contextName;
+                }
+                else if (contextName.Contains("NATIVE"))
+                {
+                    Native = contextName;
+                    driver.Context = contextName;
+                }
+            }
