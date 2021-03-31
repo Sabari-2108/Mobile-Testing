@@ -4,7 +4,7 @@ using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.MultiTouch;
 using System.Threading;
 
-namespace SLIC_Astra_Proposal
+namespace 
 {
     class swipes
     {
