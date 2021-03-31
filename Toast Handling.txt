@@ -1,0 +1,29 @@
+Toast Handling
+______________
+
+//Validating the Toast Message
+Boolean alertValidation = isToastMessageDisplayed();
+if (alertValidation)
+{
+	Capture();
+        goto Last;
+}
+else
+{
+	throw new Exception();
+}
+
+
+public Boolean isToastMessageDisplayed()
+{
+	Boolean isToastMessageSeen = false;
+
+	Thread.Sleep(200);
+        string captured = driver.PageSource;           
+
+	if (captured.ToLower().Contains("successfully"))
+        {
+        	return true;
+	}
+	return isToastMessageSeen;
+}
